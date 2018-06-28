@@ -9,7 +9,9 @@ import './styles.css';
 
 class App extends Component {
   state = {
-    messages: []
+    messages: [],
+    joinableRooms: [],
+    joinedRooms: []
   };
 
   componentDidMount() {
@@ -19,17 +21,26 @@ class App extends Component {
       tokenProvider: new Chatkit.TokenProvider({ url: tokenUrl })
     });
 
-    chatManager.connect().then(currentUser => {
-      this.currentUser = currentUser;
-      this.currentUser.subscribeToRoom({
-        roomId: 10447031,
-        hooks: {
-          onNewMessage: message => {
-            this.setState({ messages: [...this.state.messages, message] });
+    chatManager
+      .connect()
+      .then(currentUser => {
+        this.currentUser = currentUser;
+        this.currentUser.getJoinableRooms().then(joinableRooms => {
+          this.setState({
+            joinableRooms,
+            joinedRooms: this.currentUser.rooms
+          }).catch(error => console.log('Error on rooms: ', error));
+        });
+        this.currentUser.subscribeToRoom({
+          roomId: 10447031,
+          hooks: {
+            onNewMessage: message => {
+              this.setState({ messages: [...this.state.messages, message] });
+            }
           }
-        }
-      });
-    });
+        });
+      })
+      .catch(error => console.log('Error on connecting: ', error));
   }
 
   sendMessage = text => {
@@ -39,7 +50,9 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <RoomList />
+        <RoomList
+          rooms={[...this.state.joinedRooms, ...this.state.joinableRooms]}
+        />
         <MessageList messages={this.state.messages} />
         <NewRoomForm />
         <SendMessageForm sendMessage={this.sendMessage} />

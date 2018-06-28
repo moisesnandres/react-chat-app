@@ -1,12 +1,14 @@
 import React from 'react';
 
-const RoomList = () => (
+const RoomList = ({ rooms }) => (
   <div className="room__list">
     <h2>Rooms:</h2>
     <ul>
-      <li className="room__list__item active"># Room 1</li>
-      <li className="room__list__item"># Room 2</li>
-      <li className="room__list__item"># Room 3</li>
+      {rooms.map(room => (
+        <li key={room.id} className="room__list__item">
+          # {room.name}
+        </li>
+      ))}
     </ul>
   </div>
 );
