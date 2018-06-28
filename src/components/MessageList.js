@@ -1,10 +1,15 @@
 import React from 'react';
 import Message from './Message';
 
-const MessageList = () => (
+const MessageList = ({ messages }) => (
   <div className="message__list">
-    <Message username="moisesnandres" text="hello" />
-    <Message username="bot" text="world!" />
+    {messages.map(message => (
+      <Message
+        key={message.id}
+        username={message.senderId}
+        text={message.text}
+      />
+    ))}
   </div>
 );
 
