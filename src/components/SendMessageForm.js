@@ -19,6 +19,7 @@ class SendMessageForm extends Component {
           type="text"
           placeholder="Type your message and hit ENTER"
           name="new_message"
+          disabled={this.props.disabled}
         />
       </form>
     );

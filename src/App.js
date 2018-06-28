@@ -35,6 +35,13 @@ class App extends Component {
     this.currentUser.sendMessage({ text, roomId: this.state.roomId });
   };
 
+  createRoom = name => {
+    this.currentUser
+      .createRoom({ name })
+      .then(room => this.subscribeToRoom(room.id))
+      .catch(error => console.log('Error with createRoom: ', error));
+  };
+
   getRooms = () => {
     this.currentUser
       .getJoinableRooms()
@@ -70,9 +77,15 @@ class App extends Component {
           subscribeToRoom={this.subscribeToRoom}
           roomId={this.state.roomId}
         />
-        <MessageList messages={this.state.messages} />
-        <NewRoomForm />
-        <SendMessageForm sendMessage={this.sendMessage} />
+        <MessageList
+          messages={this.state.messages}
+          roomId={this.state.roomId}
+        />
+        <NewRoomForm createRoom={this.createRoom} />
+        <SendMessageForm
+          sendMessage={this.sendMessage}
+          disabled={!this.state.roomId}
+        />
       </div>
     );
   }

@@ -68,6 +68,7 @@ button {
 
 .room__list__item.active {
   color: #fff;
+  font-weight: bold;
 }
 
 .room__list__item + .room__list__item {
@@ -94,7 +95,19 @@ button {
 }
 
 .message__list__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+}
+
+.message__list__blank {
   padding: 0.5rem;
+}
+
+.message__hi {
+  margin: 0;
+  opacity: 0.5;
 }
 
 .message__form {
