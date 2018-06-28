@@ -1,0 +1,112 @@
+body {
+  font-family: sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+}
+
+input,
+button {
+  background-color: transparent;
+  border: 0;
+  font-size: inherit;
+}
+
+.app {
+  display: grid;
+  grid-template-areas:
+    'rm ml ml ml ml ml'
+    'rm ml ml ml ml ml'
+    'rm ml ml ml ml ml'
+    'rm ml ml ml ml ml'
+    'rm ml ml ml ml ml'
+    'rf mf mf mf mf mf';
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 60px;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.room__list {
+  background-color: #333333;
+  color: #fff;
+  grid-area: rm;
+  padding: 1rem;
+}
+
+.room__list h2 {
+  margin-bottom: 1rem;
+}
+
+.room__list__item {
+  color: #c4c4c4;
+  padding: 0.4rem 0;
+}
+
+.room__list__item.active {
+  color: #fff;
+}
+
+.room__list__item + .room__list__item {
+  margin-top: 0.2rem;
+}
+
+.room__form {
+  align-items: stretch;
+  display: flex;
+  grid-area: rf;
+  padding: 1rem 0.5rem;
+}
+
+.room__form__input {
+  flex: 1;
+}
+
+.message__list {
+  grid-area: ml;
+  padding: 1rem;
+}
+
+.message__form {
+  background-color: #f2f2f2;
+  display: flex;
+  grid-area: mf;
+  padding: 0.5rem 1rem;
+}
+
+.message__form__input {
+  flex: 1;
+}
+
+.message + .message {
+  margin-top: 0.7rem;
+}
+
+.message__username {
+  color: rgba(#4f4f4f, 0.9);
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+  opacity: 0.9;
+}
+
+.message__text {
+  background-color: #2ea2db;
+  border-radius: 5px;
+  color: #fff;
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+}

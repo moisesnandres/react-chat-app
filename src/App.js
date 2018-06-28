@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import Message from './components/Message';
+import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
 import NewRoomForm from './components/NewRoomForm';
 import SendMessageForm from './components/SendMessageForm';
+import './styles.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Message />
+      <div className="app">
+        <RoomList />
         <MessageList />
         <NewRoomForm />
         <SendMessageForm />
